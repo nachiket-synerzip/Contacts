@@ -6,9 +6,9 @@
 var express = require('express')
   , routes = require('./routes')
   , user = require('./routes/user')
+  , contacts = require('./routes/contacts')
   , http = require('http')
-  , path = require('path')
-  , pg = require('pg');	
+  , path = require('path');	
 
 var app = express();
 
@@ -30,18 +30,12 @@ if ('development' == app.get('env')) {
 
 app.get('/', routes.index);
 app.get('/users', user.list);
+app.get('/contacts/all', contacts.all);
+app.get('/contacts/add', contacts.add);
+app.get('/contacts/remove', contacts.remove);
+
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
-
 });
 
-// create connection on postgresql
-
-var client = new pg.Client("postgres://postgres:password@localhost/postgres");
-client.connect(function(err){
-   if(err)
-   console.log("Connection failed");
-else
-console.log("Connected");		
-});

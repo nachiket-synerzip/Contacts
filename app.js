@@ -7,7 +7,8 @@ var express = require('express')
   , routes = require('./routes')
   , user = require('./routes/user')
   , http = require('http')
-  , path = require('path');
+  , path = require('path')
+  , pg = require('pg');	
 
 var app = express();
 
@@ -32,4 +33,15 @@ app.get('/users', user.list);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
+
+});
+
+// create connection on postgresql
+
+var client = new pg.Client("postgres://postgres:password@localhost/postgres");
+client.connect(function(err){
+   if(err)
+   console.log("Connection failed");
+else
+console.log("Connected");		
 });

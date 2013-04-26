@@ -1,15 +1,17 @@
 define([ 'jquery', 'underscore', 'backbone', 'text!templates/contactTpl.html' ],
-		function($, _, Backbone, courseTemplate) {
+		function($, _, Backbone, contactTemplate) {
 
-	var courseView = Backbone.View.extend({
+	var contactView = Backbone.View.extend({
 		className: "contact-wrapper",
 		
-		template : _.template(courseTemplate),
+		template : _.template(contactTemplate),
 		
 		render: function() {
+			console.log("rendering contact ");
+			console.log(this.model.toJSON());
 			this.$el.html(this.template(this.model.toJSON()));
 			return this;
 		}
 	});
-	return courseView;
+	return contactView;
 });

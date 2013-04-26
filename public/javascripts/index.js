@@ -17,29 +17,14 @@ require.config({
     }
 });
 
-require([ 'backbone', '/javascripts/views/contactView.js'],
-    function(Backbone, ContactView) {
-
-        contactView = new ContactView({
+require([ 'backbone', 'views/appView', 'views/contactView'],
+    function(Backbone, AppView, ContactView) {
+        appView = new AppView({
             el: $("#page-content")
         });
-
-        var ContactRouter = Backbone.Router.extend({
-
-            routes: {
-                "contact/:name": "contactByName",  // #search/HTML5
-            },
-
-            contactByName: function(query) {
-                console.log("contactByName");
-            }
-
+        contactView = new ContactView({
+            el: $("#contacts-list")
         });
-        var contactRouter = new ContactRouter;
-        contactRouter.on("route:contactByName", function(name) {
-        	console.log("name = " + name);
-        });
-        Backbone.history.start();
     }
 );
 

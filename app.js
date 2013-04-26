@@ -6,7 +6,7 @@
 var express = require('express')
   , routes = require('./routes')
   , user = require('./routes/user')
-  , contacts = require('./routes/contacts')
+  //, contacts = require('./routes/contacts')
   , http = require('http')
   , path = require('path');	
 
@@ -29,10 +29,10 @@ if ('development' == app.get('env')) {
 }
 
 app.get('/', routes.index);
-app.get('/users', user.list);
+/*app.get('/users', user.list);
 app.get('/contacts/all', contacts.all);
 app.get('/contacts/add', contacts.add);
-app.get('/contacts/remove', contacts.remove);
+app.get('/contacts/remove', contacts.remove);*/
 
 
 http.createServer(app).listen(app.get('port'), function(){

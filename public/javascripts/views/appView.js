@@ -1,5 +1,5 @@
-define([ 'jquery', 'underscore', 'backbone', 'text!templates/appTpl.html', 'collections/contacts', 'models/contact', 'views/contactView'],
-		function($, _, Backbone, appTemplate, ContactCollection, Contact, ContactView) {
+define([ 'jquery', 'jquery_ui', 'underscore', 'backbone', 'text!templates/appTpl.html', 'collections/contacts', 'models/contact', 'views/contactView'],
+		function($, ui, _, Backbone, appTemplate, ContactCollection, Contact, ContactView) {
 
 	var appView = Backbone.View.extend({
 
@@ -10,8 +10,13 @@ define([ 'jquery', 'underscore', 'backbone', 'text!templates/appTpl.html', 'coll
 
 		render: function() {
 			this.$el.html(this.template());
-			console.log("Should render contacts");
-			this.renderContacts();
+			//console.log("Should render contacts");
+			//this.renderContacts();
+			//render tabs
+			$(function(){
+				console.log($('#contacts-tabs'));
+				$('#contacts-tabs').tabs();
+			});
 			return this;
 		},
 		

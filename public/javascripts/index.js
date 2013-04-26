@@ -17,14 +17,12 @@ require.config({
     }
 });
 
-require([ 'backbone', 'views/appView', 'views/contactView'],
-    function(Backbone, AppView, ContactView) {
+require([ 'backbone', 'views/appView'],
+    function(Backbone, AppView) {
         appView = new AppView({
             el: $("#page-content")
         });
-        contactView = new ContactView({
-            el: $("#contacts-list")
-        });
+        appView.render();
     }
 );
 

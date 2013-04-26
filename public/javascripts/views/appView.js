@@ -6,7 +6,6 @@ define([ 'jquery', 'underscore', 'backbone', 'text!templates/appTpl.html', 'coll
 		template : _.template(appTemplate),
 
 		initialize: function(){
-			this.render();
 		},
 
 		render: function() {
@@ -50,7 +49,6 @@ define([ 'jquery', 'underscore', 'backbone', 'text!templates/appTpl.html', 'coll
 					model: contact
 				});
 				this.$("#contacts-list").append(contactView.render().el);
-				console.log(contactView.render().el);
 			});
 		}
 	});

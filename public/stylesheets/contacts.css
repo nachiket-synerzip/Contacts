@@ -1,0 +1,27 @@
+ul .contact-list-item {
+	height: 50px;
+	border: 1px solid #000000;
+	background: #ededed;
+	color: #000000;
+	list-style-type: none;
+	margin: 1px;
+	padding-left: 5px;
+	border-radius: 5px;
+}
+ul .contact-list-item:hover {
+	background: #dedede;
+}
+
+.contact-list-item .cname {
+	font-size: 18px;
+	color: #000000;
+}
+
+.contact-list-item .cmobile, .contact-list-item .cemail, .contact-list-item .caddress {
+	font-size: 14px;
+	color: #000022;
+}
+
+.hidden {
+	display: none;
+}

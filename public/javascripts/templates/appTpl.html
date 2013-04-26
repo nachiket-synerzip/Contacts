@@ -3,14 +3,19 @@
 		<li><a href='#tabs-all'>All</a></li>
 		<li><a href='#tabs-new'>New</a></li>
 		<li><a href='#tabs-del'>Delete</a></li>
-		<div id='tabs-all'>
-			<!-- all list accordion -->
-		</div>
-		<div id='tabs-new'>
-			<!-- new contact form -->
-		</div>
-		<div id='tabs-del'>
-			<!-- all list with checkbox -->
-		</div>
 	</ul>
+	<div id='tabs-all'>
+		<!-- all list -->
+		<ul id='all-contacts-list'></ul>
+	</div>
+	<div id='tabs-new'>
+		<!-- new contact form -->
+	</div>
+	<div id='tabs-del'>
+		<!-- all list with checkbox -->
+		<form id='delContactsForm'>
+			<ul id='del-contacts-list'></ul>
+			<input type="button" value='Delete'/>
+		</form>
+	</div>
 </div>

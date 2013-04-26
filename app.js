@@ -5,8 +5,8 @@
 
 var express = require('express')
   , routes = require('./routes')
-  , user = require('./routes/user')
   , contacts = require('./routes/contacts')
+  , config = require('./config/dbConfig')
   , http = require('http')
   , path = require('path');	
 
@@ -29,7 +29,6 @@ if ('development' == app.get('env')) {
 }
 
 app.get('/', routes.index);
-app.get('/users', user.list);
 app.get('/contacts/all', contacts.all);
 app.get('/contacts/add', contacts.add);
 app.get('/contacts/remove', contacts.remove);

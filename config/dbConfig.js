@@ -1,5 +1,5 @@
 
-config = {
+module.exports = {
 	db : "postgres",
 	host : "localhost",
 	port : 5432,

@@ -29,6 +29,7 @@ if ('development' == app.get('env')) {
 }
 
 app.get('/', routes.index);
+
 app.get('/contacts/all', contacts.all);
 app.get('/contacts/add', contacts.add);
 app.get('/contacts/remove', contacts.remove);

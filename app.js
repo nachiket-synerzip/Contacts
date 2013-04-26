@@ -29,7 +29,6 @@ if ('development' == app.get('env')) {
 }
 
 app.get('/', routes.index);
-
 app.get('/contacts/all', contacts.all);
 app.get('/contacts/add', contacts.add);
 app.get('/contacts/remove', contacts.remove);
@@ -38,4 +37,3 @@ app.get('/contacts/remove', contacts.remove);
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
 });
-

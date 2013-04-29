@@ -10,6 +10,26 @@ ul .contact-list-item {
 }
 ul .contact-list-item:hover {
 	background: #dedede;
+	cursor: pointer;
+}
+
+ul .contact-list-item-show-all {
+	height: 100px;
+	background: #dedede;
+}
+
+ul .contact-list-item-show-all {
+	height: 100px;
+	background: #dedede;
+	display: block;
+}
+
+ul .contact-list-item-show-all .cemail, ul .contact-list-item-show-all .caddress{
+	display: block;
+}
+
+.cemail, .caddress {
+	display: none;
 }
 
 .contact-list-item .cname {

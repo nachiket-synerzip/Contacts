@@ -9,8 +9,14 @@ define([ 'jquery', 'jquery_ui', 'underscore', 'backbone', 'text!templates/appTpl
 			this.contacts = new ContactCollection;
 			this.contacts.fetch();
 			var self = this;
+			this.contacts.on("change", function(collection, response) {
+				console.log("change");
+				self.renderContacts();
+				self.renderNewContactsForm();
+				self.renderDeleteContactsForm();
+			});
 			this.contacts.on("reset", function(collection, response) {
-				console.log(collection);
+				console.log("reset");
 				self.renderContacts();
 				self.renderNewContactsForm();
 				self.renderDeleteContactsForm();
@@ -37,7 +43,7 @@ define([ 'jquery', 'jquery_ui', 'underscore', 'backbone', 'text!templates/appTpl
 					model: contact
 				});
 				var a = contactView.render().el;
-				console.log(a);
+				//console.log(a);
 				$("#del-contacts-list").append(a);
 			});
 		},

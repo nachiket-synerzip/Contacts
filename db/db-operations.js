@@ -30,10 +30,9 @@ module.exports = {
 	},
 	getContactsAll : function (cb){
 		var resultSet = [];
-		var queryString = "SELECT * FROM contacts";
-		var executeQuery = client.query(queryString);
+		var sqlStatement = "SELECT * FROM contacts";
+		var executeQuery = client.query(sqlStatement);
 		executeQuery.on("row",function(row){
-			console.log("resultSet..." + row);
 			resultSet.push(row);
 		});
 		executeQuery.on("error",function(){
@@ -42,6 +41,21 @@ module.exports = {
 		executeQuery.on("end",function(){
 			cb(200,JSON.stringify(resultSet));
 		});
+	},
+	getContactsForId : function(id,cb){
+		var resultSet = [];
+		var sqlStatement = "SELECT * FROM contacts WHERE id=" + id;
+		var executeQuery = client.query(sqlStatement);
+		executeQuery.on("row",function(row){
+			resultSet.push(row);
+		});
+		executeQuery.on("error",function(){
+			cb(404,"{}");
+		});
+		executeQuery.on("end",function(){
+			cb(200,JSON.stringify(resultSet));
+		}); 
+		
 	}	
 
 };

@@ -30,17 +30,17 @@ module.exports = {
 			res.set({'Content-Type':'application/json'});
 			res.send(code,string);
 		});
-		//res.send("Show all the contacts");
-		
 	},
 	
 	respondForAdd : function(req,res){
 		res.send("Add new contact");
 	},
 	respondForView : function(req,res){
-		var id = req.params.id;
-		console.log("Show results for " + id);
-		res.send("Show results for " + id);
+		dbOperations.getContactsForId(req.params.id,function(code,string){
+			res.set({'Content-Type':'application/json'});
+			res.send(code,string);
+		});
+		
 	},
 	respondForUpdate : function(req,res){
 		var id = req.params.id;

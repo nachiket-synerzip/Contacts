@@ -1,8 +1,8 @@
-define(['backbone', 'models/contact' ], function(Backbone, ContactModel) {
+define(['parse', 'models/contact' ], function(Parse, ContactModel) {
 
-    var contactCollection = Backbone.Collection.extend({
+    var contactCollection = Parse.Collection.extend({
         model: ContactModel,
-        url: "/contacts/all",
+        //url: "/contacts/all",
         selected_model: null
     });
 

@@ -1,6 +1,6 @@
-define(['backbone' ], function(Backbone) {
-	var contactModel = Backbone.Model.extend({
-
+define(['parse'], function(Parse) {
+	var contactModel = Parse.Object.extend({
+		className: 'Contact',
 		defaults : {
 			name : "Contact Name Contact LastName",
 			mobile : 0000000000,

@@ -1,5 +1,5 @@
-define([ 'jquery', 'jquery_ui', 'underscore', 'backbone', 'text!templates/appTpl.html', 'collections/contacts', 'models/contact', 'views/contactView', 'text!templates/contactNewTpl.html', 'views/contactDelView'],
-		function($, ui, _, Backbone, appTemplate, ContactCollection, Contact, ContactView, newContactForm, DelContactView) {
+define([ 'jquery', 'jquery_ui', 'underscore', 'backbone', 'text!templates/appTpl.html', 'collections/contacts', 'models/contact', 'views/contactView', 'views/contactNewView', 'views/contactDelView'],
+		function($, ui, _, Backbone, appTemplate, ContactCollection, Contact, ContactView, NewContactView, DelContactView) {
 
 	var appView = Backbone.View.extend({
 
@@ -49,8 +49,8 @@ define([ 'jquery', 'jquery_ui', 'underscore', 'backbone', 'text!templates/appTpl
 		},
 
 		renderNewContactsForm: function(){
-			console.log(newContactForm);
-			$("#tabs-new").html(newContactForm);
+			var newContactView = new NewContactView;
+			newContactView.render();
 		},
 		renderContacts: function(){
 			$("#all-contacts-list").html("");

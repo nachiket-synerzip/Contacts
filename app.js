@@ -6,9 +6,8 @@
 var express = require('express')
   , routes = require('./routes')
   , contacts = require('./routes/contacts')
-  , config = require('./config/dbConfig')
   , http = require('http')
-  , path = require('path');	
+  , path = require('path');
 
 var app = express();
 
@@ -29,9 +28,11 @@ if ('development' == app.get('env')) {
 }
 
 app.get('/', routes.index);
-app.get('/contacts/all', contacts.all);
-app.get('/contacts/add', contacts.add);
-app.get('/contacts/remove', contacts.remove);
+app.get('/contacts/all', contacts.respondForAll);
+app.post('/contacts/add', contacts.respondForAdd);
+app.get('/contacts/view/:id',contacts.respondForView);
+app.put('/contacts/update/:id',contacts.respondForUpdate);
+app.delete('/contacts/remove', contacts.respondForDelete);
 
 
 http.createServer(app).listen(app.get('port'), function(){

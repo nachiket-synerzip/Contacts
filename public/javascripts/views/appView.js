@@ -6,6 +6,15 @@ define([ 'jquery', 'jquery_ui', 'underscore', 'backbone', 'text!templates/appTpl
 		template: _.template(appTemplate),
 
 		initialize: function(){
+			this.contacts = new ContactCollection;
+			this.contacts.fetch();
+			var self = this;
+			this.contacts.on("reset", function(collection, response) {
+				console.log(collection);
+				self.renderContacts();
+				self.renderNewContactsForm();
+				self.renderDeleteContactsForm();
+			});
 		},
 
 		contacts: {},
@@ -39,33 +48,6 @@ define([ 'jquery', 'jquery_ui', 'underscore', 'backbone', 'text!templates/appTpl
 		},
 		renderContacts: function(){
 			$("#all-contacts-list").html("");
-			this.contacts = new ContactCollection([
-				{
-					name: "Nachiket Kakatkar",
-					mobile: 1234567891,
-					email: "nachiket.kakatkar@synerzip.com",
-					address: "Pune"
-				},
-				{
-					name: "Nachiket2 Kakatkar2",
-					mobile: 1234567892,
-					email: "nachiket.kakatkar2@synerzip.com",
-					address: "Pune2"					
-				},
-				{
-					name: "Nachiket Kakatkar3",
-					mobile: 1234567893,
-					email: "nachiket.kakatkar3@synerzip.com",
-					address: "Pune3"					
-				},
-				{
-					name: "Nachiket Kakatkar4",
-					mobile: 1234567894,
-					email: "nachiket.kakatkar4@synerzip.com",
-					address: "Pune4"					
-				}
-			]);
-			console.log(this.contacts);
 			this.contacts.each(function(contact){
 				var contactView = new ContactView({
 					model: contact

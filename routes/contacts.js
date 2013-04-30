@@ -43,8 +43,6 @@ module.exports = {
 			dbOperations.addNewContact(keys,values,function(code,string){
 				res.send(code,string);
 			});
-			//console.log(keys + "\n" + values);
-			//res.send(200,object);
 		});
 	},
 	respondForView : function(req,res){
@@ -64,7 +62,8 @@ module.exports = {
 		 });
 	},
 	respondForDelete : function(req,res){
-		console.log("Remove contact");
-		res.send("Remove contact");
+		dbOperations.deleteContactForId(req,function(code,string){
+			res.send(code,string);
+		});
 	}
 }

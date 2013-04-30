@@ -80,6 +80,19 @@ module.exports = {
 				cb(200,string);
 			}
 		});
+	},
+	deleteContactForId : function(req,cb){
+		var sqlStatement = "DELETE FROM contacts WHERE id="+req.params.id;
+		client.query(sqlStatement,function(err,result){
+			if(err){
+				cb(404,"{}");
+			}else{
+				var string = result.rowCount + " row deleted"; 
+				cb(200,string);
+			}
+			
+		
+		});
 	}	
 
 };

@@ -56,6 +56,19 @@ module.exports = {
 			cb(200,JSON.stringify(resultSet));
 		}); 
 		
+	},
+	updateContactsForId : function(req,string,cb){
+		var sqlStatement = "UPDATE contacts SET "+ string + " WHERE id=" + req.params.id;
+		client.query(sqlStatement,function(err,result){
+			if(err){
+				cb(404,"{}");
+			}else
+			{
+				var string = result.rowCount + " row updated" ;
+				console.log(string);
+				cb(200,string);
+			}
+		});
 	}	
 
 };

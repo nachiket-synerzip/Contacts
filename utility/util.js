@@ -1,16 +1,3 @@
-var util = require("util");
-
-var getObjectKeys = function(o){
-		return Object.keys(o);
-}
-var getObjectValues = function(o){
-	var arr = [];
-	for(var k in o){
-		arr.push(o[k]);
-	}
-	return arr;
-}
-
 module.exports = {
 	getObjectFromHtmlBody : function(req,cb){
 		var data = "";
@@ -27,5 +14,15 @@ module.exports = {
 			arr.push(k + "=" +"'" +object[k]+ "'");
 		}
 		return arr.toString();
+	},
+	getObjectValues : function(o){
+		var arr = [];
+			for(var k in o){
+				arr.push("'"+o[k]+"'");
+			}
+		return arr;
+	},
+	getObjectKeys : function(o){
+		return Object.keys(o);
 	}
 }

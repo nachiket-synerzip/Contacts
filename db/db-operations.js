@@ -69,6 +69,17 @@ module.exports = {
 				cb(200,string);
 			}
 		});
+	},
+	addNewContact : function(keys,values,cb){
+		var sqlStatement = "INSERT INTO contacts (" + keys + ") VALUES (" + values +")";
+		client.query(sqlStatement,function(err,result){
+			if(err){
+				cb(404,"{}");
+			}else{
+				var string = result.rowCount + " row inserted";
+				cb(200,string);
+			}
+		});
 	}	
 
 };

@@ -11,11 +11,11 @@ define(['backbone' ], function(Backbone) {
         validate: function(attrs, options) {
             if (!attrs.name) {
                 return "Please enter name";
-            } else if (!(attrs.mobile && (typeof attrs.mobile == "number") && attr.mobile >= 1000000000)) {
+            } else if (!(attrs.mobile && (typeof attrs.mobile == "number") && attrs.mobile >= 1000000000)) {
                 return "Please enter 10 digited mobile number";
             } else if (!attrs.email) {
                 return "Please enter email id";
-            } else if (!atrrs.address) {
+            } else if (!attrs.address) {
             	return "Please enter address";
             }
         }

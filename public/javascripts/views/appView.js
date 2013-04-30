@@ -12,13 +12,11 @@ define([ 'jquery', 'jquery_ui', 'underscore', 'backbone', 'text!templates/appTpl
 			this.contacts.on("change", function(collection, response) {
 				console.log("change");
 				self.renderContacts();
-				self.renderNewContactsForm();
 				self.renderDeleteContactsForm();
 			});
 			this.contacts.on("reset", function(collection, response) {
 				console.log("reset");
 				self.renderContacts();
-				self.renderNewContactsForm();
 				self.renderDeleteContactsForm();
 			});
 		},

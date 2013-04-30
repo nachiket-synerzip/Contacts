@@ -12,10 +12,13 @@ var json = [
 */
 
 
-var dbOperations = require('../db/db-operations');
+var dbOperations = require('../db/db-operations')
+	,http = require("http")
+	,url = require("url")
+	,util = require("../utility/util");
+
 dbOperations.connect(
 	function(err){
-	console.log(err);
 		if(err){
 			console.log("Contacts==>Error : " + err.message);
 			return;
@@ -23,6 +26,7 @@ dbOperations.connect(
 		console.log("Succesfully initialized DB");
 	}
 );
+
 module.exports = {
 
 	respondForAll : function(req,res){
@@ -43,9 +47,14 @@ module.exports = {
 		
 	},
 	respondForUpdate : function(req,res){
-		var id = req.params.id;
-		console.log("Update " + id);
-		res.send("Update " + id);
+		
+		 util.getObjectFromHtmlBody(req,function(object){
+		 	var f_a_v = util.createFieldsAndValues(object);
+		 	dbOperations.updateContactsForId(req,f_a_v,function(code,string){
+		 		res.send(code,string);
+		 	});	
+		 	
+		 });
 	},
 	respondForDelete : function(req,res){
 		console.log("Remove contact");

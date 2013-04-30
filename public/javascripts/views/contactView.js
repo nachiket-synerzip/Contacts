@@ -17,8 +17,12 @@ define([ 'jquery', 'underscore', 'backbone', 'text!templates/contactTpl.html' ],
 				if(this.model.collection.selected_model !== null) {
 					this.model.collection.selected_model.$el.toggleClass("contact-list-item-show-all");
 				}
-				this.model.collection.selected_model = this;
-				this.$el.toggleClass("contact-list-item-show-all");
+				if(this == this.model.collection.selected_model) {
+					this.model.collection.selected_model = null;
+				} else {
+					this.model.collection.selected_model = this;
+					this.$el.toggleClass("contact-list-item-show-all");
+				}
 			}
 		}
 	});

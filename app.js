@@ -32,7 +32,7 @@ app.get('/contacts/all', contacts.respondForAll);
 app.post('/contacts/add', contacts.respondForAdd);
 app.get('/contacts/view/:id',contacts.respondForView);
 app.put('/contacts/update/:id',contacts.respondForUpdate);
-app.delete('/contacts/remove', contacts.respondForDelete);
+app.delete('/contacts/remove/:id', contacts.respondForDelete);
 
 
 http.createServer(app).listen(app.get('port'), function(){

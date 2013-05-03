@@ -7,7 +7,10 @@ define(['parse'], function(Parse) {
 			email : 'abc@def.com',
 			address : '332, abc, def, hgskjgsk, fasfafafs-9852'
 		},
-
+		parse: function(data){
+			console.log(data	);
+			return data;
+		},
         validate: function(attrs, options) {
             if (!attrs.name) {
                 return "Please enter name";

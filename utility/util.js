@@ -1,12 +1,15 @@
 module.exports = {
 	getObjectFromHtmlBody : function(req,cb){
 		var data = "";
+		if(req.headers["content-type"] == "application/json") {
+			cb(req.body);
+			return;
+		}
 		req.on("data",function(chunk){
 			data += chunk;
 		}).on("end",function(){
-			cb(JSON.parse(data));
+			console.log("calling callback");
 		});
-		
 	},
 	createFieldsAndValues : function(object){
 		var arr=[];

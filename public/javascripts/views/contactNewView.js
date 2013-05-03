@@ -22,8 +22,17 @@ define([ 'jquery', 'underscore', 'backbone', 'text!templates/contactNewTpl.html'
 				email: $("#fieldEmail").val(),
 				address: $("#fieldAddress").val()
 			});
-			console.log(contact);
-			contact.save();
+			console.log("saving");
+			//FIXME : The success and error callbacks not triggered
+			contact.save(null, null, {
+				success: function() {
+					console.log("Successfully Saved " + contact.attributes.name);
+					contact.collection.sync();
+				},
+				error: function(){
+					console.log("Some error while saving contact!!");
+				}
+			});
 		},
 		clearFields: function(){
 			console.log("clear fields");

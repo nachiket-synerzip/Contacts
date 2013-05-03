@@ -76,7 +76,7 @@ module.exports = {
 			if(err){
 				cb(404,"{}");
 			}else{
-				var string = result.rowCount + " row inserted";
+				var string = JSON.stringify({"result":"success"});
 				cb(200,string);
 			}
 		});

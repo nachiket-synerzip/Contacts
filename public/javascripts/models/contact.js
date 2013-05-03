@@ -7,8 +7,14 @@ define(['backbone' ], function(Backbone) {
 			email : 'abc@def.com',
 			address : '332, abc, def, hgskjgsk, fasfafafs-9852'
 		},
+		methodToURL: {
+			'read': '/contacts/view/',
+			'create': '/contacts/add',
+			'update': '/contacts/update/',
+			'delete': '/contacts/remove/'
+		},
 		parse: function(data){
-			console.log(data	);
+			console.log(data);
 			return data;
 		},
         validate: function(attrs, options) {
@@ -21,6 +27,24 @@ define(['backbone' ], function(Backbone) {
             } else if (!attrs.address) {
             	return "Please enter address";
             }
+        },
+        sync: function(method, model, options) {
+        	options = options || {};
+        	var url = model.methodToURL[method.toLowerCase()];
+        	switch(url) {
+        		case "create":
+        		options.url = url;
+        		break;
+        		case "read":
+        		case "update":
+        		case "delete":
+        		options.url = url + model.attributes.id;
+        		break;
+        		default:
+        		options.url = url;
+        		break;
+        	}
+        	Backbone.sync(method, model, options);
         }
 	});
 	return contactModel;

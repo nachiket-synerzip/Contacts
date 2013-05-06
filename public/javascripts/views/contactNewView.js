@@ -33,6 +33,7 @@ define([ 'jquery', 'underscore', 'backbone', 'text!templates/contactNewTpl.html'
 					console.log("Some error while saving contact!!");
 				}
 			});
+			appView.contacts.add(contact);
 		},
 		clearFields: function(){
 			console.log("clear fields");

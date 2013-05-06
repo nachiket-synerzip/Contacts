@@ -71,12 +71,13 @@ module.exports = {
 		});
 	},
 	addNewContact : function(keys,values,cb){
-		var sqlStatement = "INSERT INTO contacts (" + keys + ") VALUES (" + values +")";
+		var sqlStatement = "INSERT INTO contacts (" + keys + ") VALUES (" + values +") RETURNING id";
 		client.query(sqlStatement,function(err,result){
 			if(err){
 				cb(404,"{}");
 			}else{
-				var string = JSON.stringify({"result":"success"});
+				console.log(result);
+				var string = JSON.stringify({"id":result.rows[0].id});
 				cb(200,string);
 			}
 		});

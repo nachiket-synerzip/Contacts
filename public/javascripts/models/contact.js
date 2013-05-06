@@ -14,7 +14,7 @@ define(['backbone' ], function(Backbone) {
 			'delete': '/contacts/remove/'
 		},
 		parse: function(data){
-			console.log(data);
+			//console.log(data);
 			return data;
 		},
         validate: function(attrs, options) {

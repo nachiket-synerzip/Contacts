@@ -9,16 +9,29 @@ define([ 'jquery', 'jquery_ui', 'underscore', 'backbone', 'text!templates/appTpl
 			this.contacts = new ContactCollection;
 			this.contacts.fetch();
 			var self = this;
-			this.contacts.on("change", function(collection, response) {
-				console.log("change");
+			this.contacts.on("add", function(model, collection, options) {
+				/*console.log("add");
+				console.log(model);
+				console.log("==== add ====");*/
+				self.renderContact(model);
+				self.renderDeleteContact(model);
+			});
+			this.contacts.on("reset", function(collection, options) {
+				/*console.log("reset");
+				console.log(options);
+				console.log("==== reset ====");*/
 				self.renderContacts();
 				self.renderDeleteContactsForm();
 			});
-			this.contacts.on("reset", function(collection, response) {
-				console.log("reset");
+			this.contacts.on("sync", function(model, response, options) {
+				/*console.log("sync");
+				console.log(model);
+				console.log(response);
+				console.log(options);
+				console.log("===sync===");*/
 				self.renderContacts();
 				self.renderDeleteContactsForm();
-			});
+			});			
 		},
 
 		contacts: {},
@@ -35,14 +48,20 @@ define([ 'jquery', 'jquery_ui', 'underscore', 'backbone', 'text!templates/appTpl
 			return this;
 		},
 		
+		renderDeleteContact: function(contact) {
+			var contactView = new DelContactView({
+				model: contact
+			});
+			var a = contactView.render().el;
+			//console.log(a);
+			$("#del-contacts-list").append(a);
+		},
+		
 		renderDeleteContactsForm: function() {
+			$("#del-contacts-list").html("");
+			var self = this;
 			this.contacts.each(function(contact){
-				var contactView = new DelContactView({
-					model: contact
-				});
-				var a = contactView.render().el;
-				//console.log(a);
-				$("#del-contacts-list").append(a);
+				self.renderDeleteContact(contact);
 			});
 		},
 
@@ -50,15 +69,20 @@ define([ 'jquery', 'jquery_ui', 'underscore', 'backbone', 'text!templates/appTpl
 			var newContactView = new NewContactView;
 			newContactView.render();
 		},
+		
+		renderContact: function(contact) {
+			var contactView = new ContactView({
+				model: contact
+			});
+			var a = contactView.render().el;
+			//console.log(a);
+			$("#all-contacts-list").append(a);			
+		},
 		renderContacts: function(){
 			$("#all-contacts-list").html("");
+			var self = this;
 			this.contacts.each(function(contact){
-				var contactView = new ContactView({
-					model: contact
-				});
-				var a = contactView.render().el;
-				console.log(a);
-				$("#all-contacts-list").append(a);
+				self.renderContact(contact);
 			});
 		}
 	});

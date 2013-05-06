@@ -7,8 +7,8 @@ define([ 'jquery', 'underscore', 'backbone', 'text!templates/contactDelTpl.html'
 		template : _.template(contactDelTemplate),
 		
 		render: function() {
-			console.log("rendering del contact ");
-			console.log(this.model.toJSON());
+			//console.log("rendering del contact ");
+			//console.log(this.model.toJSON());
 			this.$el.html(this.template(this.model.toJSON()));
 			return this;
 		},

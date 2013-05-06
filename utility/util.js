@@ -8,7 +8,7 @@ module.exports = {
 		req.on("data",function(chunk){
 			data += chunk;
 		}).on("end",function(){
-			console.log("calling callback");
+			cb(JSON.parse(data));
 		});
 	},
 	createFieldsAndValues : function(object){
